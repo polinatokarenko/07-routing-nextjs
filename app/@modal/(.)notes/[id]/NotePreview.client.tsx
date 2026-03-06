@@ -2,12 +2,15 @@
 
 import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/router";
 import type { Note } from "@/types/note";
 import { fetchNoteById } from "@/lib/api";
 import css from "./NotePreview.module.css";
+import Modal from "@/components/Modal/Modal";
 
-export default function NotePreviewClient() {
-    const { id } = useParams<{id: string}>();
+export default function NotePreviewClient({ id }: string) {
+    const { id } = useParams<{ id: string }>();
+    const router = useRouter();
 
     const { data: note, isLoading, error } = useQuery<Note>({
         queryKey: ["note", id],
@@ -24,7 +27,8 @@ export default function NotePreviewClient() {
     }
 
     return (
-        <div className={css.container}>
+        <Modal onClose={() => router.back()}>
+            <div className={css.container}>
             <div className={css.item}>
                 <div className={css.header}>
                     <h2>{note.title}</h2>
@@ -34,5 +38,6 @@ export default function NotePreviewClient() {
                 <p className={css.date}>{note.createdAt}</p>
             </div>
         </div>
+        </Modal>
     );
 }

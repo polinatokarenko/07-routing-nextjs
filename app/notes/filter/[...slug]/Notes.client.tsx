@@ -19,17 +19,22 @@ import SearchBox from "@/components/SearchBox/SearchBox";
 import { fetchNotes } from "@/lib/api";
 
 /*types*/
-import type { Note } from "../../types/note";
+import type { Note } from "@/types/note";
 
 /*message*/
 import toast, { Toaster } from 'react-hot-toast';
+import { tagType } from "@/lib/api";
 
 interface FetchNotesResponse {
   notes: Note[];
   totalPages: number;
 };
 
-export default function NotesClient() {
+type NotesClientProps = {
+  tag: "Todo" | "Work" | "Personal" | "Meeting" | "Shopping";
+}
+
+export default function NotesClient({ tag }: NotesClientProps) {
     const [page, setPage] = useState<number>(1);
     const perPage: number = 6;
     
@@ -37,8 +42,8 @@ export default function NotesClient() {
     const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
     
     const { data, isSuccess, isFetching, isFetched } = useQuery<FetchNotesResponse>({
-        queryKey: ["notes", search, page],
-        queryFn: () => fetchNotes({ search, page, perPage }),
+        queryKey: ["notes", search, page, tag],
+        queryFn: () => fetchNotes({ search, page, perPage, tag }),
         placeholderData: keepPreviousData,
         refetchOnMount: false,
     });

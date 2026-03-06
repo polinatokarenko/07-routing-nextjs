@@ -3,9 +3,9 @@ import { QueryClient, HydrationBoundary, dehydrate } from "@tanstack/react-query
 import { fetchNoteById } from "@/lib/api";
 
 type NoteDetailsProps = {
-    params: {
-        id: string;
-    }
+    params: Promise<{
+        id: string
+    }>
 }
 
 export default async function NotePreview({ params }: NoteDetailsProps) {
