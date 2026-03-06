@@ -1,13 +1,13 @@
 type SidebarNotesLayoutProps = {
     children: React.ReactNode,
-    modal: React.ReactNode,
+    sidebar: React.ReactNode,
 }
 
-export default function NotesLayout({ children, modal }: SidebarNotesLayoutProps) {
+export default function SidebarNotesLayout({ children, sidebar}: SidebarNotesLayoutProps) {
     return (
         <section>
+            <aside>{sidebar}</aside>
             <main>{children}</main>
-            {modal}
         </section>
     );
 }
