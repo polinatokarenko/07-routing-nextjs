@@ -19,7 +19,7 @@ export type tagType = "Todo" | "Work" | "Personal" | "Meeting" | "Shopping";
 
 export interface FetchNotesProps {
   search?: string,
-  tag?: tagType | undefined,
+  tag?: tagType,
   sortBy?: string,
   page?: number,
   perPage?: number,
