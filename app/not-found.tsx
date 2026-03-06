@@ -1,3 +1,4 @@
+/*css*/
 import css from "@/app/Home.module.css";
 
 export default function NotFound() {

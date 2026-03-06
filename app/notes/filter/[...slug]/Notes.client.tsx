@@ -23,7 +23,6 @@ import type { Note } from "@/types/note";
 
 /*message*/
 import toast, { Toaster } from 'react-hot-toast';
-import { tagType } from "@/lib/api";
 
 interface FetchNotesResponse {
   notes: Note[];
@@ -31,7 +30,7 @@ interface FetchNotesResponse {
 };
 
 type NotesClientProps = {
-  tag: "Todo" | "Work" | "Personal" | "Meeting" | "Shopping";
+  tag: "Todo" | "Work" | "Personal" | "Meeting" | "Shopping" | undefined;
 }
 
 export default function NotesClient({ tag }: NotesClientProps) {

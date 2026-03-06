@@ -16,20 +16,21 @@ type NotesProps = {
 };
 
 export default async function Notes({ params }: NotesProps) {
-  const tag  = (await params).slug[0] as tagType;
+  const firstTag = (await params).slug[0];
+  const tag = firstTag !== "all" && (firstTag as tagType);
 
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
     queryKey: ["notes", tag],
-    queryFn: () => fetchNotes({ tag }),
+    queryFn: tag ? () => fetchNotes({ tag }) : () => fetchNotes({}),
   });
 
   const dehydratedState = dehydrate(queryClient);
 
   return (
     <HydrationBoundary state={dehydratedState}>
-      <NotesClient tag={tag} />
+      <NotesClient tag={tag ? tag : undefined} />
     </HydrationBoundary>
   );
 }

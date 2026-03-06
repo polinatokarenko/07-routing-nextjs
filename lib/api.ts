@@ -15,7 +15,7 @@ const api = axios.create({
   },
 });
 
-export type tagType = "Todo" | "Work" | "Personal" | "Meeting" | "Shopping";
+export type tagType = "Todo" | "Work" | "Personal" | "Meeting" | "Shopping" ;
 
 export interface FetchNotesProps {
   search?: string,
