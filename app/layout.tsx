@@ -8,7 +8,6 @@ import Footer from "@/components/Footer/Footer";
 
 /*queryclientprovider*/
 import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
-import { fetchNotes } from "@/lib/api";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
