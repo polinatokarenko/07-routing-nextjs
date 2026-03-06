@@ -2,16 +2,14 @@ import React from "react";
 
 type SidebarNotesLayoutProps = {
     children: React.ReactNode,
-    sidebar?: React.ReactNode,
-    modal?: React.ReactNode,
+    sidebar: React.ReactNode,
 }
 
-export default function SidebarNotesLayout({ children, sidebar, modal }: SidebarNotesLayoutProps) {
+export default function SidebarNotesLayout({ children, sidebar }: SidebarNotesLayoutProps) {
     return (
         <section>
-            {sidebar && <aside>{sidebar}</aside>}
+            <aside>{sidebar}</aside>
             <main>{children}</main>
-            {modal && modal}
         </section>
     );
 }
